@@ -40,6 +40,10 @@ describe Feedzirra::Parser::Atom do
       Feedzirra::Parser::Atom.parse(load_sample("atom_with_link_tag_for_url_unmarked.xml")).feed_url.should == "http://www.innoq.com/planet/atom.xml"
     end
     
+    it "should parse the entry url even when it doesn't have the type='text/html' attribute" do
+      Feedzirra::Parser::Atom.parse(load_sample("atom_with_link_tag_for_url_unmarked.xml")).entries.first.url.should == "http://www.innoq.com/blog/phaus/2009/07/ja.html"
+    end
+
     it "should parse the feed_url" do
       @feed.feed_url.should == "http://aws.typepad.com/aws/atom.xml"
     end
